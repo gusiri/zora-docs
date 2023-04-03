@@ -59,3 +59,25 @@ Check out our [GraphiQL](https://api.zora.co/graphql) to play around with the AP
 - `limit`: Limits the size of the response
 - `after`: A cursor string from the previous page 
     - `after` can be obtained from the `endCursor` in the `pageInfo` response
+
+---
+
+### Examples
+
+- Specify network type to `goerli`
+```
+query TokenEvents {
+  token(
+    token: {address: "0x80cE590A9F050b6022a4FF3bA6bb350D22A44889", tokenId: "1"}
+    network: {network: ETHEREUM, chain: GOERLI}
+  ) {
+    events(sort: {sortKey: CREATED, sortDirection: ASC}) {
+      eventType
+      transactionInfo {
+        blockTimestamp
+        transactionHash
+      }
+    }
+  }
+}
+```
