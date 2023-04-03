@@ -81,3 +81,24 @@ query TokenEvents {
   }
 }
 ```
+
+sortDirection: DESC - latest first
+
+```
+query TokenEvents {
+  token(
+    token: {address: "0xf52Ffb0286dcc24e800dF306f7835a439C0c6EDa", tokenId: "1"}
+    network: {network: ETHEREUM, chain: MAINNET}
+  ) {
+    events(sort: {sortKey: CREATED, sortDirection: DESC}) {
+      eventType
+      transactionInfo {
+        blockTimestamp
+        transactionHash
+      }
+    }
+  }
+}
+
+#https://goerli.etherscan.io/address/0xcc4eef05f36318bfc837efc85ae68b197053965e
+```
